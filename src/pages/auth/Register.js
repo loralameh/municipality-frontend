@@ -40,13 +40,11 @@ export default function Register() {
   );
 
   useEffect(() => {
-    console.log("user changed");
-    if (user?.token != null) {
-      console.log("user changed and found");
+    if (user) {
       dispatch(setSnackbar(snackBarSettings));
       navigate("/");
     }
-  }, [user]);
+  }, [user, dispatch, navigate, snackBarSettings]);
 
   const validation = useFormik({
     enableReinitialize: true,
