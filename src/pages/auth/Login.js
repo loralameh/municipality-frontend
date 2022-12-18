@@ -40,11 +40,12 @@ export default function Login() {
   );
 
   useEffect(() => {
-    if (user?.token != null) {
+    console.log(user);
+    if (user) {
       dispatch(setSnackbar(snackBarSettings));
       navigate("/");
     }
-  }, [user]);
+  }, [user, dispatch, navigate, snackBarSettings]);
 
   const validation = useFormik({
     initialValues: {

@@ -125,16 +125,16 @@ const userSlice = createSlice({
     [loginUser.fulfilled]: (state, { payload }) => {
       console.log(payload);
       const { user, token } = payload;
+      state.user = user;
+      state.token = token;
+      addUserToLocalStorage(user);
+      addTokenToLocalStorage(token);
       state.isLoading = false;
       state.snackBarSettings = {
         open: true,
         type: "success",
         message: `اهلا بك ${user.name} !`,
       };
-      state.user = user;
-      state.token = token;
-      addUserToLocalStorage(user);
-      addTokenToLocalStorage(token);
     },
     [loginUser.rejected]: (state, { payload }) => {
       state.isLoading = false;
