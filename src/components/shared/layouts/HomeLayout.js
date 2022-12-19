@@ -12,11 +12,15 @@ export default function FullScreenLayout() {
           height: "400px",
           backgroundSize: "cover",
           backgroundPosition: "center",
+          p: 0,
+          m: 0,
         }}
       >
         <NavBar />
       </Box>
-      <Outlet />
+      <Box p={{ xs: 1, sm: 2, md: 4 }}>
+        <Outlet />
+      </Box>
     </>
   );
 }
