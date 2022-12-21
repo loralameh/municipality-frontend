@@ -7,10 +7,12 @@ const customFetch = axios.create({
 });
 
 customFetch.interceptors.request.use((config) => {
+  console.log(config);
+  console.log(config.headers);
   const token = getTokenFromLocalStorage();
 
   if (token) {
-    config.headers.common["Authorization"] = `Bearer ${token}`;
+    config.headers["Authorization"] = `Bearer ${token}`;
   }
   return config;
 });

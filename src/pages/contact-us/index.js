@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Form, Field, ErrorMessage } from "formik";
 import Image from "assets/images/contactus.jpg";
 //validation
@@ -7,7 +7,7 @@ import { useFormik } from "formik";
 
 //redux call
 import { useDispatch, useSelector } from "react-redux";
-import { loginUser } from "features/user/userSlice";
+import { createContactUsMessage } from "features/contact-us/ContactUsSlice";
 import { setSnackbar } from "features/snackBar/snackBarSlice";
 
 //mui components
@@ -18,26 +18,30 @@ import LoadingButton from "@mui/lab/LoadingButton";
 const ContactForm = () => {
   const dispatch = useDispatch();
 
-  const { snackBarSettings, isLoading, user } = useSelector(
-    (store) => store.user
+  const { user } = useSelector((store) => store.user);
+  const { snackBarSettings, isLoading } = useSelector(
+    (store) => store.contactUs
   );
+
+  useEffect(() => {
+    if (user) {
+      dispatch(setSnackbar(snackBarSettings));
+    }
+  }, [dispatch, snackBarSettings]);
 
   const validation = useFormik({
     initialValues: {
-      name: "",
-      email: "",
+      name: user.name,
+      email: user.email,
       message: "",
-      type: "",
     },
     validationSchema: Yup.object({
-      email: Yup.string()
-        .email("البريد الالكتروني الدي ادخلته غير صالح")
-        .required("البريد الالكتروني مطلوب"),
-      password: Yup.string().required("كلمة السر مطلوبة"),
+      message: Yup.string().required("الرسالة مطلوبة"),
     }),
-    onSubmit: (values) => {
+    onSubmit: (values, { resetForm }) => {
       console.log("login", values);
-      // dispatch(loginUser(values));
+      dispatch(createContactUsMessage(values));
+      resetForm();
     },
   });
   return (
@@ -48,11 +52,10 @@ const ContactForm = () => {
           p: 4,
         }}
       >
-        نحن نقدر مدخلات وتعليقات أهالي البلد. يرجى استخدام النموذج المقدم
-        لمشاركة أفكاركم واقتراحاتكم واهتماماتكم معنا. ونعدكم بقراءة كل رسالة
-        بعناية ومراعاة جميع وجهات النظر بينما نعمل على تلبية احتياجات بلديتنا .
-        نشكرك على ثقتك بنا. إذا كانت لديك أي أسئلة أخرى ، فلا تتردد في التواصل
-        معنا
+        نحن نقدر آراء وتعليقات أهالي البلد. يرجى استخدام النموذج المقدم لمشاركة
+        أفكاركم واقتراحاتكم واهتماماتكم معنا. ونعدكم بقراءة كل رسالة بعناية
+        ومراعاة جميع وجهات النظر بينما نعمل على تلبية احتياجات بلديتنا . نشكرك
+        على ثقتك بنا. إذا كانت لديك أي أسئلة أخرى ، فلا تتردد في التواصل معنا
       </Typography>
       <Grid item display={{ xs: "none", md: "block" }} md={6}>
         <Box
@@ -91,18 +94,22 @@ const ContactForm = () => {
           label="الاسم "
           fullWidth
           margin="normal"
-          onChange={validation.handleChange}
-          error={validation.touched.name && Boolean(validation.errors.name)}
-          helperText={validation.touched.name && validation.errors.name}
+          disabled
+          value={validation.values.name}
+          // onChange={validation.handleChange}
+          // error={validation.touched.name && Boolean(validation.errors.name)}
+          // helperText={validation.touched.name && validation.errors.name}
         />
         <TextField
           name="email"
           label="البريد الالكتروني"
           fullWidth
           margin="normal"
-          onChange={validation.handleChange}
-          error={validation.touched.email && Boolean(validation.errors.email)}
-          helperText={validation.touched.email && validation.errors.email}
+          disabled
+          value={validation.values.email}
+          // onChange={validation.handleChange}
+          // error={validation.touched.email && Boolean(validation.errors.email)}
+          // helperText={validation.touched.email && validation.errors.email}
         />
         <TextField
           name="message"
@@ -112,6 +119,7 @@ const ContactForm = () => {
           margin="normal"
           multiline
           rows="4"
+          value={validation.values.message}
           onChange={validation.handleChange}
           error={
             validation.touched.message && Boolean(validation.errors.message)
@@ -120,7 +128,7 @@ const ContactForm = () => {
         />
 
         <LoadingButton
-          type="submit"
+          onClick={validation.handleSubmit}
           fullWidth
           loading={isLoading}
           variant="contained"
