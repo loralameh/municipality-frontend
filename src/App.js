@@ -53,7 +53,6 @@ export default function App() {
               path="/municipality-services"
               element={<MunicipalityServices />}
             />
-            <Route path="/contact-us" element={<ContactUs />} />
           </Route>
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
@@ -68,6 +67,7 @@ export default function App() {
             <Route path="/user-bills" element={<UserBills />} />
             <Route path="/user-profile" element={<UserProfile />} />
             <Route path="/user-services" element={<UserServices />} />
+            <Route path="/contact-us" element={<ContactUs />} />
           </Route>
         </Routes>
       </ThemeProvider>
