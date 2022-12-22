@@ -112,8 +112,8 @@ function NavBar() {
               }}
             >
               <MenuItem onClick={handleCloseNavMenu}>
-                <NavLink to="/" className="menu-link">
-                  الصفحة الرئيسية
+                <NavLink to="/about-municipality" className="menu-link">
+                  عن بلدية حاصبيا
                 </NavLink>
               </MenuItem>
               <MenuItem onClick={handleCloseNavMenu}>
@@ -121,11 +121,7 @@ function NavBar() {
                   خدمات البلدية
                 </NavLink>
               </MenuItem>
-              <MenuItem onClick={handleCloseNavMenu}>
-                <NavLink to="/about-municipality" className="menu-link">
-                  عن البلدية
-                </NavLink>
-              </MenuItem>
+
               <MenuItem onClick={handleCloseNavMenu}>
                 <NavLink to="/contact-us" className="menu-link">
                   اتصل بنا
@@ -166,16 +162,11 @@ function NavBar() {
             {title}
           </Typography>
           <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
-            <NavLink to="/" className="menu-link">
-              الصفحة الرئيسية
+            <NavLink to="/about-municipality" className="menu-link">
+              عن بلدية حاصبيا
             </NavLink>
-
             <NavLink to="/municipality-services" className="menu-link">
               خدمات البلدية
-            </NavLink>
-
-            <NavLink to="/about-municipality" className="menu-link">
-              عن البلدية
             </NavLink>
 
             <NavLink to="/contact-us" className="menu-link">
