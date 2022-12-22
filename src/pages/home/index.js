@@ -1,8 +1,22 @@
 import React from "react";
-import TextField from "@mui/material/TextField";
+import { Paper } from "@mui/material";
+import styled from "@emotion/styled";
 
-const index = () => {
-  return <div>home page</div>;
-};
+const StyledPaper = styled(Paper)`
+  background-image: url(https://example.com/image.jpg);
+  background-size: cover;
+  background-position: center;
+  padding: 16px;
+`;
 
-export default index;
+export default function Hero() {
+  return (
+    <StyledPaper>
+      <h3>This is a hero section</h3>
+      <p>
+        You can use this component to create a hero section for your website or
+        app.
+      </p>
+    </StyledPaper>
+  );
+}

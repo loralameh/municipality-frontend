@@ -51,7 +51,7 @@ export default function Album() {
             color="text.primary"
             gutterBottom
           >
-            municipality name
+            بلدية حاصبيا 2016-2022
           </Typography>
           <Typography
             variant="h5"
