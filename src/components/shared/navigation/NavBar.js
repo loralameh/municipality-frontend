@@ -131,11 +131,11 @@ function NavBar() {
                   اتصل بنا
                 </NavLink>
               </MenuItem>
-              <MenuItem onClick={handleCloseNavMenu}>
+              {/* <MenuItem onClick={handleCloseNavMenu}>
                 <NavLink to="/about-hasbaya" className="menu-link">
                   عن حاصبيا
                 </NavLink>
-              </MenuItem>
+              </MenuItem> */}
               <MenuItem onClick={handleCloseNavMenu}>
                 <NavLink to="/citizen-services" className="menu-link">
                   خدمات الاهالي
@@ -182,9 +182,9 @@ function NavBar() {
               اتصل بنا
             </NavLink>
 
-            <NavLink to="/about-hasbaya" className="menu-link">
+            {/* <NavLink to="/about-hasbaya" className="menu-link">
               عن حاصبيا
-            </NavLink>
+            </NavLink> */}
 
             <NavLink to="/citizen-services" className="menu-link">
               خدمات الاهالي

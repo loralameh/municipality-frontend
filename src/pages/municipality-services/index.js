@@ -1,5 +1,5 @@
 import React from "react";
-import ServiceCard from "./sections/ServiceCard";
+import ServiceCard from "components/shared/ServiceCard";
 // ** MUI Imports
 import Grid from "@mui/material/Grid";
 import Typography from "@mui/material/Typography";
